@@ -1,0 +1,92 @@
+:root {
+  --primary-color: #ffa203;
+  --dark-color: #ff7303;
+  --light-color: #ffdca2;
+  --danger-color: #fafafa;
+  --success-color: #808080;
+}
+
+.h3 {
+  color: var(--dark-color) !important;
+}
+
+.navbar {
+  background-color: #fff !important;
+  border-bottom: 1px solid var(--primary-color);
+}
+
+.navbar-brand {
+  color: var(--dark-color) !important;
+  font-weight: bold;
+}
+
+.nav-link {
+  color: var(--dark-color) !important;
+}
+
+.card-signup {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background-color: var(--light-color) !important;
+}
+
+.btn-signup {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background-color: var(--dark-color) !important;
+}
+
+.btn-signup:hover {
+  background-color: var(--primary-color) !important;
+  color: #181818 !important;
+}
+
+.btn-clear {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background-color: var(--danger-color) !important;
+}
+
+.btn-clear:hover {
+  background-color: #181818 !important;
+  color: #fafafa !important;
+}
+
+.form input {
+  border: 0 !important;
+  border-radius: 0px !important;
+}
+
+input {
+  border-radius: 0 !important;
+}
+
+.search {
+  background-color: #ffdca2 !important;
+  border: 0 !important;
+}
+
+.card-book {
+  border: 0 !important;
+  border-radius: 0px !important;
+  box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.16);
+}
+
+.page-link {
+  border: 0 !important;
+  border-radius: 0px !important;
+  color: #181818 !important;
+}
+
+.page-link:hover {
+  background-color: #ffdca2 !important;
+}
+
+.page-link:active {
+  background-color: var(--dark-color) !important;
+}
+
+.btn-dark {
+  border: 0 !important;
+  border-radius: 0px !important;
+}
