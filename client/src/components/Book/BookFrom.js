@@ -4,19 +4,29 @@ const BookFrom = () => {
   return (
     <form>
       <div className='form-group'>
-        <input type='email' className='form-control' placeholder='Title' />
+        <input
+          type='email'
+          className='form-control'
+          placeholder='Title'
+          required
+        />
       </div>
       <div className='form-group'>
-        <input type='email' className='form-control' placeholder='Author' />
-      </div>
-      <div class='form-check mb-3'>
         <input
-          class='form-check-input'
+          type='email'
+          className='form-control'
+          placeholder='Author'
+          required
+        />
+      </div>
+      <div className='form-check mb-3'>
+        <input
+          className='form-check-input'
           type='checkbox'
           value=''
           id='defaultCheck1'
         />
-        <label class='form-check-label' for='defaultCheck1'>
+        <label className='form-check-label' htmlFor='defaultCheck1'>
           Default checkbox
         </label>
       </div>

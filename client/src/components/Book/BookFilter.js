@@ -3,10 +3,10 @@ import React from 'react'
 const BookFilter = () => {
   return (
     <form>
-      <div class='form-group'>
+      <div className='form-group'>
         <input
           type='email'
-          class='form-control search'
+          className='form-control search'
           placeholder='Search Books'
         />
       </div>

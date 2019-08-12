@@ -16,9 +16,10 @@ const AddBook = () => {
             <form>
               <div className='form-group'>
                 <input
-                  type='email'
+                  type='text'
                   className='form-control'
                   placeholder='Title'
+                  required
                 />
               </div>
               <div className='form-group'>
@@ -26,6 +27,7 @@ const AddBook = () => {
                   type='email'
                   className='form-control'
                   placeholder='Author'
+                  required
                 />
               </div>
               <div class='form-check mb-3'>
