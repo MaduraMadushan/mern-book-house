@@ -15,3 +15,11 @@ export const BOOK_ERROR = 'BOOK_ERROR'
 export const SET_CURRENT = 'SET_CURRENT'
 export const CLEAR_CURRENT = 'CLEAR_CURRENT'
 export const CLEAR_BOOK = 'CLEAR_BOOK'
+
+export const GET_BOOKS = 'GET_BOOKS'
+export const DELETE_BOOK = 'DELETE_BOOK'
+
+export const UPDATE_BOOK = 'UPDATE_BOOK'
+
+export const FILTER_BOOKS = 'FILTER_BOOKS'
+export const CLEAR_FILTER = 'CLEAR_FILTER'

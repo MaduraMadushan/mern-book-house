@@ -5,7 +5,13 @@ import { addBook, clearCurrent } from './../../actions/bookActions'
 const BookFrom = ({ addBook, current, clearCurrent }) => {
   React.useEffect(() => {
     if (current !== null) {
-      setBook(current)
+      setBook({
+        title: current.title,
+        auther: current.auther,
+        lend: current.lend,
+        name: current.name,
+        contactNumber: current.contactNumber
+      })
     } else {
       setBook({
         title: '',
@@ -15,7 +21,7 @@ const BookFrom = ({ addBook, current, clearCurrent }) => {
         contactNumber: ''
       })
     }
-  }, [])
+  }, [current])
 
   const [book, setBook] = React.useState({
     title: '',
@@ -38,7 +44,7 @@ const BookFrom = ({ addBook, current, clearCurrent }) => {
     if (current === null) {
       addBook(book)
     }
-    clearAll()
+    clearCurrent()
   }
 
   const clearAll = () => {
@@ -84,37 +90,38 @@ const BookFrom = ({ addBook, current, clearCurrent }) => {
           Lend
         </label>
       </div>
-      {toDateDisabled && (
-        <div className='form-group'>
-          <input
-            type='text'
-            name='name'
-            value={name}
-            onChange={onChange}
-            className='form-control'
-            placeholder='Name'
-          />
-        </div>
-      )}
-      {toDateDisabled && (
-        <div className='form-group'>
-          <input
-            type='text'
-            name='contactNumber'
-            value={contactNumber}
-            onChange={onChange}
-            className='form-control'
-            placeholder='Phone No'
-          />
-        </div>
-      )}
+      <div className='form-group'>
+        <input
+          type='text'
+          name='name'
+          value={name}
+          onChange={onChange}
+          className='form-control'
+          placeholder='Name'
+        />
+      </div>
+      <div className='form-group'>
+        <input
+          type='text'
+          name='contactNumber'
+          value={contactNumber}
+          onChange={onChange}
+          className='form-control'
+          placeholder='Phone No'
+        />
+      </div>
 
-      <button className='btn btn-warning btn-block btn-signup text-light'>
+      <button className='btn btn-warning btn-block btn-signup text-light mb-3'>
         {current ? 'Update Book' : 'Add Book'}
       </button>
-      <button className='btn btn-light btn-block btn-clear' onClick={clearAll}>
-        Clear
-      </button>
+      {current && (
+        <button
+          className='btn btn-light btn-block btn-clear mb-3'
+          onClick={clearAll}
+        >
+          Clear
+        </button>
+      )}
     </form>
   )
 }

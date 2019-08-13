@@ -2,10 +2,23 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { logout } from './../../actions/authActions'
+import { getContacts } from './../../actions/bookActions'
 import BookFrom from '../Book/BookFrom'
 import BookFilter from '../Book/BookFilter'
+import BookItems from '../Book/BookItems'
 
-const Book = ({ auth: { isAuthenticated, loading }, logout }) => {
+const Book = ({
+  auth: { isAuthenticated, loading },
+  logout,
+  books,
+  getContacts,
+  filtered
+}) => {
+  React.useEffect(() => {
+    getContacts()
+    // eslint-disable-next-line
+  }, [])
+
   return (
     <React.Fragment>
       <div className='container mt-3 d-flex justify-content-end'>
@@ -18,81 +31,21 @@ const Book = ({ auth: { isAuthenticated, loading }, logout }) => {
 
       <div className='container mt-3'>
         <div className='row'>
-          <div className='col-md-4 d-none d-md-block '>
+          <div className='col-md-4 '>
             <BookFrom />
-          </div>
-          <div className='col-md-4 d-block d-sm-block d-md-none'>
-            <Link
-              to='/book/addbook'
-              className='btn btn-warning btn-block btn-signup text-light mb-3'
-            >
-              Add Book
-            </Link>
           </div>
           <div className='col-md-8'>
             <BookFilter />
-            <div className='row'>
-              <div className='col-md-6'>
-                <div className='card card-book mt-2'>
-                  <div className='card-body'>
-                    <h5 className='card-title'>
-                      Harry Potter and the Philosopher's Stone
-                    </h5>
-                    <p className='card-text'> J. K. Rowling</p>
-                  </div>
-                </div>
+            {books !== null && !loading ? (
+              <div className='row'>
+                {filtered !== null
+                  ? filtered.map(book => (
+                      <BookItems key={book._id} book={book} />
+                    ))
+                  : books.map(book => <BookItems key={book._id} book={book} />)}
               </div>
-              <div className='col-md-6'>
-                <div className='card card-book mt-2'>
-                  <div className='card-body'>
-                    <h5 className='card-title'>
-                      Harry Potter and the Philosopher's Stone
-                    </h5>
-                    <p className='card-text'> J. K. Rowling</p>
-                  </div>
-                </div>
-              </div>
-              <div className='col-md-6'>
-                <div className='card card-book mt-2'>
-                  <div className='card-body'>
-                    <h5 className='card-title'>
-                      Harry Potter and the Philosopher's Stone
-                    </h5>
-                    <p className='card-text'> J. K. Rowling</p>
-                  </div>
-                </div>
-              </div>
-              <div className='col-md-6'>
-                <div className='card card-book mt-2'>
-                  <div className='card-body'>
-                    <h5 className='card-title'>
-                      Harry Potter and the Philosopher's Stone
-                    </h5>
-                    <p className='card-text'> J. K. Rowling</p>
-                  </div>
-                </div>
-              </div>
-              <div className='col-md-6'>
-                <div className='card card-book mt-2'>
-                  <div className='card-body'>
-                    <h5 className='card-title'>
-                      Harry Potter and the Philosopher's Stone
-                    </h5>
-                    <p className='card-text'> J. K. Rowling</p>
-                  </div>
-                </div>
-              </div>
-              <div className='col-md-6'>
-                <div className='card card-book mt-2'>
-                  <div className='card-body'>
-                    <h5 className='card-title'>
-                      Harry Potter and the Philosopher's Stone
-                    </h5>
-                    <p className='card-text'> J. K. Rowling</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            ) : null}
+
             <nav aria-label='Page navigation  '>
               <ul className='pagination justify-content-center mt-3'>
                 <li className='page-item'>
@@ -130,10 +83,12 @@ const Book = ({ auth: { isAuthenticated, loading }, logout }) => {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  books: state.book.books,
+  filtered: state.book.filtered
 })
 
 export default connect(
   mapStateToProps,
-  { logout }
+  { logout, getContacts }
 )(Book)

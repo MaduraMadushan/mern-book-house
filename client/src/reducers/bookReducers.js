@@ -3,7 +3,12 @@ import {
   BOOK_ERROR,
   SET_CURRENT,
   CLEAR_CURRENT,
-  CLEAR_BOOK
+  CLEAR_BOOK,
+  GET_BOOKS,
+  DELETE_BOOK,
+  UPDATE_BOOK,
+  FILTER_BOOKS,
+  CLEAR_FILTER
 } from './../actions/type'
 
 const initialState = {
@@ -19,7 +24,7 @@ export default (state = initialState, action) => {
     case ADD_BOOK:
       return {
         ...state,
-        books: [action.payload, ...state.books],
+        books: [...state.books, action.payload],
         loading: false
       }
     case BOOK_ERROR:
@@ -35,6 +40,35 @@ export default (state = initialState, action) => {
         filtered: null,
         error: null,
         current: null
+      }
+    case GET_BOOKS:
+      return { ...state, books: action.payload, loading: false }
+    case DELETE_BOOK:
+      return {
+        ...state,
+        books: state.books.filter(book => book._id !== action.payload),
+        loading: false
+      }
+    case UPDATE_BOOK:
+      return {
+        ...state,
+        books: state.books.map(book =>
+          book._id === action.payload._id ? action.payload : book
+        ),
+        loading: false
+      }
+    case FILTER_BOOKS:
+      return {
+        ...state,
+        filtered: state.books.filter(book => {
+          const regex = new RegExp(`${action.payload}`, 'gi')
+          return book.title.match(regex) || book.auther.match(regex)
+        })
+      }
+    case CLEAR_FILTER:
+      return {
+        ...state,
+        filtered: null
       }
     default:
       return state
