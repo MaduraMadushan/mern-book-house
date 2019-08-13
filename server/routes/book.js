@@ -11,10 +11,7 @@ router.post(
     check('title', 'Title is required')
       .not()
       .isEmail(),
-    check('autherFirstName', 'First Name is required')
-      .not()
-      .isEmpty(),
-    check('autherLastName', 'Last Name is required')
+    check('auther', 'Auther is required')
       .not()
       .isEmpty()
   ],
@@ -62,11 +59,10 @@ router.patch('/:id', auth, async (req, res) => {
   const updates = Object.keys(req.body)
   const allowedUpdates = [
     'title',
-    'autherFirstName',
+    'auther',
     'autherLastName',
     'lend',
-    'landFirstName',
-    'landLastName',
+    'name',
     'contactNumber'
   ]
 

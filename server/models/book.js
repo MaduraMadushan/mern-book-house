@@ -6,11 +6,7 @@ const bookSchema = mongoose.Schema(
       type: String,
       required: true
     },
-    autherFirstName: {
-      type: String,
-      required: true
-    },
-    autherLastName: {
+    auther: {
       type: String,
       required: true
     },
@@ -18,10 +14,7 @@ const bookSchema = mongoose.Schema(
       type: Boolean,
       default: false
     },
-    landFirstName: {
-      type: String
-    },
-    landLastName: {
+    name: {
       type: String
     },
     contactNumber: {
