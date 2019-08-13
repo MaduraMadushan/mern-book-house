@@ -5,7 +5,7 @@ const Navbar = () => {
   return (
     <nav className='navbar navbar-expand-sm navbar-light '>
       <div className='container'>
-        <Link to='/' className='navbar-brand'>
+        <Link to='#' className='navbar-brand'>
           BOOK HOUSE
         </Link>
         <button

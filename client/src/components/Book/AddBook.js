@@ -6,7 +6,7 @@ const AddBook = () => {
     <React.Fragment>
       <div className='container mt-3 '>
         <Link to='/book' className='btn btn-dark   text-light'>
-          Logout
+          Back to Book House
         </Link>
       </div>
 

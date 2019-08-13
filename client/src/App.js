@@ -6,6 +6,12 @@ import SignUp from './components/pages/SignUp'
 import Login from './components/pages/Login'
 import Book from './components/pages/Book'
 import AddBook from './components/Book/AddBook'
+import PrivateRoute from './components/routes/PrivateRoute'
+import setAuthToken from './utils/setAuthToken'
+
+if (localStorage.token) {
+  setAuthToken(localStorage.token)
+}
 
 function App() {
   return (
@@ -14,8 +20,8 @@ function App() {
         <Route path='/' exact component={Home} />
         <Route path='/signup' exact component={SignUp} />
         <Route path='/login' exact component={Login} />
-        <Route path='/book' exact component={Book} />
-        <Route path='/book/addbook' exact component={AddBook} />
+        <PrivateRoute path='/book' exact component={Book} />
+        <PrivateRoute path='/book/addbook' exact component={AddBook} />
       </Switch>
     </BrowserRouter>
   )

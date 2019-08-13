@@ -1,13 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { logout } from './../../actions/authActions'
 import BookFrom from '../Book/BookFrom'
 import BookFilter from '../Book/BookFilter'
 
-const Book = () => {
+const Book = ({ auth: { isAuthenticated, loading }, logout }) => {
   return (
     <React.Fragment>
       <div className='container mt-3 d-flex justify-content-end'>
-        <button className='btn btn-dark   text-light'>Logout</button>
+        {isAuthenticated && (
+          <button onClick={logout} className='btn btn-dark text-light'>
+            Logout
+          </button>
+        )}
       </div>
 
       <div className='container mt-3'>
@@ -123,4 +129,11 @@ const Book = () => {
   )
 }
 
-export default Book
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+
+export default connect(
+  mapStateToProps,
+  { logout }
+)(Book)
