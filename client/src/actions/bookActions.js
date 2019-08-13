@@ -25,7 +25,7 @@ export const addBook = book => async dispatch => {
 export const getContacts = () => async dispatch => {
   try {
     const res = await axios.get('/api/books')
-    dispatch({ type: GET_BOOKS, payload: res.data.book })
+    dispatch({ type: GET_BOOKS, payload: res.data })
   } catch (e) {
     dispatch({
       type: BOOK_ERROR

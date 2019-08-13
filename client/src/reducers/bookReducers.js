@@ -42,7 +42,14 @@ export default (state = initialState, action) => {
         current: null
       }
     case GET_BOOKS:
-      return { ...state, books: action.payload, loading: false }
+      return {
+        ...state,
+        books: action.payload.book,
+        count: action.payload.count,
+        page: action.payload.page,
+        pageSize: action.payload.pageSize,
+        loading: false
+      }
     case DELETE_BOOK:
       return {
         ...state,

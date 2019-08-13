@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { logout } from './../../actions/authActions'
 import { getContacts } from './../../actions/bookActions'
@@ -45,36 +44,6 @@ const Book = ({
                   : books.map(book => <BookItems key={book._id} book={book} />)}
               </div>
             ) : null}
-
-            <nav aria-label='Page navigation  '>
-              <ul className='pagination justify-content-center mt-3'>
-                <li className='page-item'>
-                  <a className='page-link' href='#' aria-label='Previous'>
-                    <span aria-hidden='true'>&laquo;</span>
-                  </a>
-                </li>
-                <li className='page-item'>
-                  <a className='page-link' href='#'>
-                    1
-                  </a>
-                </li>
-                <li className='page-item'>
-                  <a className='page-link' href='#'>
-                    2
-                  </a>
-                </li>
-                <li className='page-item'>
-                  <a className='page-link' href='#'>
-                    3
-                  </a>
-                </li>
-                <li className='page-item'>
-                  <a className='page-link' href='#' aria-label='Next'>
-                    <span aria-hidden='true'>&raquo;</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
           </div>
         </div>
       </div>
