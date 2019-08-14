@@ -42,10 +42,19 @@ export const deleteBook = id => async dispatch => {
   }
 }
 
-export const updateBook = book => async dispatch => {
+export const updateBook = (
+  id,
+  title,
+  auther,
+  lend,
+  name,
+  contactNumber
+) => async dispatch => {
+  const book = { title, auther, lend, name, contactNumber }
   const config = { headers: { 'Content-Type': 'application/json' } }
+  console.log(book)
   try {
-    const res = await axios.post(`/api/books/${book._id}`, book, config)
+    const res = await axios.patch(`/api/books/${id}`, book, config)
     dispatch({ type: UPDATE_BOOK, payload: res.data })
   } catch (e) {
     dispatch({ type: BOOK_ERROR })

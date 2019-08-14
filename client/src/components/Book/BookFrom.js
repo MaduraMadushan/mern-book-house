@@ -1,11 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addBook, clearCurrent } from './../../actions/bookActions'
+import { addBook, clearCurrent, updateBook } from './../../actions/bookActions'
 
-const BookFrom = ({ addBook, current, clearCurrent }) => {
+const BookFrom = ({ addBook, current, clearCurrent, updateBook }) => {
   React.useEffect(() => {
     if (current !== null) {
       setBook({
+        _id: current._id,
         title: current.title,
         auther: current.auther,
         lend: current.lend,
@@ -14,6 +15,7 @@ const BookFrom = ({ addBook, current, clearCurrent }) => {
       })
     } else {
       setBook({
+        _id: '',
         title: '',
         auther: '',
         lend: false,
@@ -24,6 +26,7 @@ const BookFrom = ({ addBook, current, clearCurrent }) => {
   }, [current])
 
   const [book, setBook] = React.useState({
+    _id: '',
     title: '',
     auther: '',
     lend: false,
@@ -33,7 +36,7 @@ const BookFrom = ({ addBook, current, clearCurrent }) => {
 
   const [toDateDisabled, toggleDisabled] = React.useState(false)
 
-  const { title, auther, lend, name, contactNumber } = book
+  const { _id, title, auther, lend, name, contactNumber } = book
 
   const onChange = e => {
     setBook({ ...book, [e.target.name]: e.target.value })
@@ -43,9 +46,22 @@ const BookFrom = ({ addBook, current, clearCurrent }) => {
     e.preventDefault()
     if (current === null) {
       addBook(book)
+    } else {
+      updateBook(
+        book._id,
+        book.title,
+        book.auther,
+        book.lend,
+        book.name,
+        book.contactNumber
+      )
     }
-    clearCurrent()
+    clearAll()
   }
+
+  console.log(current)
+  console.log(_id)
+  console.log(book)
 
   const clearAll = () => {
     clearCurrent()
@@ -132,5 +148,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addBook, clearCurrent }
+  { addBook, clearCurrent, updateBook }
 )(BookFrom)

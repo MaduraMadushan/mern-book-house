@@ -21,13 +21,13 @@ const Navbar = () => {
         </button>
         <div className='collapse navbar-collapse' id='navbarNavDropdown'>
           <ul className='navbar-nav ml-auto'>
-            <li className='nav-item active'>
-              <Link to='/signup' className='nav-link' href='#'>
+            <li className='nav-item'>
+              <Link to='/signup' className='nav-link'>
                 Sign Up
               </Link>
             </li>
             <li className='nav-item'>
-              <Link to='login' className='nav-link' href='#'>
+              <Link to='login' className='nav-link'>
                 Login
               </Link>
             </li>

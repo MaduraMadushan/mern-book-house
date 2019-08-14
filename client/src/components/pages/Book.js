@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { logout } from './../../actions/authActions'
 import { getContacts } from './../../actions/bookActions'
+import Pagination from 'react-js-pagination'
+import axios from 'axios'
 import BookFrom from '../Book/BookFrom'
 import BookFilter from '../Book/BookFilter'
 import BookItems from '../Book/BookItems'
@@ -9,13 +11,32 @@ import BookItems from '../Book/BookItems'
 const Book = ({
   auth: { isAuthenticated, loading },
   logout,
-  books,
   getContacts,
   filtered
 }) => {
+  const [doc, setDoc] = React.useState({
+    books: [],
+    count: null,
+    limit: 6,
+    skip: 0,
+    activePage: 1
+  })
+
+  const { books, count, limit, activePage } = doc
+
+  const fetch = async pg => {
+    const res = await axios.get(`/api/books?skip=${pg - 1}&limit=${limit}`)
+    setDoc({
+      books: res.data.book,
+      count: res.data.count,
+      limit: 6,
+      activePage: pg
+    })
+  }
+
   React.useEffect(() => {
+    fetch()
     getContacts()
-    // eslint-disable-next-line
   }, [])
 
   return (
@@ -44,6 +65,19 @@ const Book = ({
                   : books.map(book => <BookItems key={book._id} book={book} />)}
               </div>
             ) : null}
+            <nav aria-label='Page navigation example '>
+              <Pagination
+                activePage={activePage}
+                itemsCountPerPage={limit}
+                totalItemsCount={count}
+                pageRangeDisplayed={3}
+                onChange={fetch}
+                itemClass='page-item'
+                linkClass='page-link'
+                innerClass='pagination justify-content-center mt-4'
+                activeClass='active'
+              />
+            </nav>
           </div>
         </div>
       </div>
@@ -53,7 +87,6 @@ const Book = ({
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  books: state.book.books,
   filtered: state.book.filtered
 })
 
