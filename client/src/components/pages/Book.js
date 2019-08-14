@@ -37,6 +37,7 @@ const Book = ({
   React.useEffect(() => {
     fetch()
     getContacts()
+    // eslint-disable-next-line
   }, [])
 
   return (
