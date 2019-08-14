@@ -83,7 +83,7 @@ const Login = ({ isAuthenticated, login }) => {
                             type='submit'
                             className='btn btn-warning btn-block btn-signup text-light'
                           >
-                            Register
+                            Login
                           </button>
                           <button
                             type='reset'

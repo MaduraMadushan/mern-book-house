@@ -12,7 +12,15 @@ import {
   CLEAR_FILTER
 } from './type'
 
-export const addBook = book => async dispatch => {
+export const addBook = (
+  title,
+  auther,
+  lend,
+  name,
+  contactNumber
+) => async dispatch => {
+  const book = { title, auther, lend, name, contactNumber }
+  console.log(book)
   const config = { headers: { 'Content-Type': 'application/json' } }
   try {
     const res = await axios.post('/api/books', book, config)

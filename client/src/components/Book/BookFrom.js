@@ -36,7 +36,7 @@ const BookFrom = ({ addBook, current, clearCurrent, updateBook }) => {
 
   const [toDateDisabled, toggleDisabled] = React.useState(false)
 
-  const { _id, title, auther, lend, name, contactNumber } = book
+  const { title, auther, lend, name, contactNumber } = book
 
   const onChange = e => {
     setBook({ ...book, [e.target.name]: e.target.value })
@@ -45,7 +45,7 @@ const BookFrom = ({ addBook, current, clearCurrent, updateBook }) => {
   const onSubmit = e => {
     e.preventDefault()
     if (current === null) {
-      addBook(book)
+      addBook(book.title, book.auther, book.lend, book.name, book.contactNumber)
     } else {
       updateBook(
         book._id,
@@ -56,12 +56,15 @@ const BookFrom = ({ addBook, current, clearCurrent, updateBook }) => {
         book.contactNumber
       )
     }
-    clearAll()
+    setBook({
+      _id: '',
+      title: '',
+      auther: '',
+      lend: false,
+      name: '',
+      contactNumber: ''
+    })
   }
-
-  console.log(current)
-  console.log(_id)
-  console.log(book)
 
   const clearAll = () => {
     clearCurrent()

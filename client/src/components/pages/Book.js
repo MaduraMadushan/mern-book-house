@@ -66,19 +66,23 @@ const Book = ({
                   : books.map(book => <BookItems key={book._id} book={book} />)}
               </div>
             ) : null}
-            <nav aria-label='Page navigation example '>
-              <Pagination
-                activePage={activePage}
-                itemsCountPerPage={limit}
-                totalItemsCount={count}
-                pageRangeDisplayed={3}
-                onChange={fetch}
-                itemClass='page-item'
-                linkClass='page-link'
-                innerClass='pagination justify-content-center mt-4'
-                activeClass='active'
-              />
-            </nav>
+            {books !== null && !loading ? (
+              <nav aria-label='Page navigation example '>
+                <Pagination
+                  activePage={activePage}
+                  itemsCountPerPage={limit}
+                  totalItemsCount={count}
+                  pageRangeDisplayed={3}
+                  onChange={fetch}
+                  itemClass='page-item'
+                  linkClass='page-link'
+                  innerClass='pagination justify-content-center mt-4'
+                  activeClass='active'
+                />
+              </nav>
+            ) : (
+              <h4>Please add a book</h4>
+            )}
           </div>
         </div>
       </div>
